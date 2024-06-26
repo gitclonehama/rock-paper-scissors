@@ -77,10 +77,10 @@ function playGame() {
   }
 }
 
-playGame();
 
 
 
+// playGame();
 
 // const humanSelection = getHumanChoice();
 // const computerSelection = getComputerChoice();
