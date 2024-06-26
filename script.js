@@ -59,7 +59,7 @@ function playGame() {
   let computerScore = 0;
 
   let rounds = 5;
-  while (rounds > 0 && rounds <= 5){
+  while (rounds >= 1 && rounds <= 5){
     let humanSelection = getHumanChoice();
     let computerSelection = getComputerChoice();
     let winner = playRound(humanSelection, computerSelection);
@@ -68,6 +68,7 @@ function playGame() {
     }else if (winner === 'computer'){
       computerScore++;
     }
+    rounds--;
   }
   if (humanScore != computerScore) {
     (humanScore > computerScore) ?
@@ -76,7 +77,7 @@ function playGame() {
   }
 }
 
-
+playGame();
 
 
 
