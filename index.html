@@ -15,16 +15,24 @@
         <button class="btn">Scissors</button>
     </div>
     <div class="display-box">
-        <div class="score">
+        <div class="scores">
             <h3>Score</h3>
             <p>Player: <span id="human-score">0</span></p>
             <p>Computer: <span id="computer-score">0</span></p>
         </div>
-        <div class="text">
-            <h3 id="round-choices"><span id="human-choice"></span> vs <span id="computer-choice"></span></h3>
-            <h3 id="round-result"></h3>
+        <div class="choices">
+            <div class="human-choice">
+                <h3>You Chose</h3>
+                <span id="human-choice">hc</span>
+            </div>
+            <div class="computer-choice">
+                <h3>Computer Chose</h3>
+                <span id="computer-choice">cc</span>
+            </div>
         </div>
+        <h3 id="round-result">round result</h3>
     </div>
+    <button id="reset">Reset</button>
 </body>
 <script src="script.js"></script>
 </html>
