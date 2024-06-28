@@ -50,12 +50,12 @@ function displayGame(winner, humanChoice, computerChoice, humanScore, computerSc
 }
 
 function resetGame() {
-    roundsPlayed = 0;
+    const result = document.getElementById('round-result');
     humanScore = 0;
     computerScore = 0;
     displayScore(humanScore, computerScore);
     displayChoice('?', '?');
-    displayResult('');
+    result.innerText = '....................';
 }
 
 // Reset button event listener
