@@ -17,36 +17,29 @@ function getHumanChoice() {
 
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice){
-      console.log(`You both chose ${humanChoice}, it's a tie!`) // Using template literal
+    return 'tie';
   }else { // human != computer choice
-      let winner = ''
+      let winner = '';
       switch(humanChoice){
           case 'rock':
               if (computerChoice === 'scissors'){
-                  winner = 'human'
-                  console.log('You win! Rock beats scissors!')
+                  winner = 'human';
               }else{  // computer chose 'paper'
-                  winner = 'computer'
-                  console.log('You lose! Paper beats rock!')
+                  winner = 'computer';
               }
               break;
           case 'paper':
               if (computerChoice === 'rock'){
-                  winner = 'human'
-                  console.log('You win! Paper beats rock!')
+                  winner = 'human';
               }else{  // computer chose 'scissors'
-                  winner = 'computer'
-                  console.log('You lose! Scissors beat paper!')
+                  winner = 'computer';
               }
               break;
           case 'scissors':
               if (computerChoice === 'paper'){
-                  winner = 'human'
-                  
-                  console.log('You win! Scissors beat paper!')
+                  winner = 'human';
               }else{  // computer chose 'rock'
-                  winner = 'computer'
-                  console.log('You lose! Rock beats paper!')
+                  winner = 'computer';
               }
               break;
       }
@@ -54,35 +47,34 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
+const choiceButtons = document.querySelectorAll(".btn");
+let roundsPlayed = 0;
+let humanScore = 0;
+let computerScore = 0;
 
-  let rounds = 5;
-  while (rounds >= 1 && rounds <= 5){
-    let humanSelection = getHumanChoice();
-    let computerSelection = getComputerChoice();
-    let winner = playRound(humanSelection, computerSelection);
-    if (winner === 'human'){
-      humanScore++;
-    }else if (winner === 'computer'){
-      computerScore++;
-    }
-    rounds--;
-  }
-  if (humanScore != computerScore) {
-    (humanScore > computerScore) ?
-    console.log(`You win! Your score: ${humanScore} Computer score: ${computerScore}`) :
-    console.log(`You lose! Your score: ${humanScore} Computer score: ${computerScore}`);
-  }
-}
-
-
-
-
-// playGame();
-
-// const humanSelection = getHumanChoice();
-// const computerSelection = getComputerChoice();
-
-// playRound(humanSelection,computerSelection);
+choiceButtons.forEach(button => {
+    button.addEventListener("click", function() {
+        if (roundsPlayed < 5) {
+            roundsPlayed++;
+            const computerChoice = getComputerChoice();
+            const humanChoice = this.innerText.toLowerCase();
+            const winner = playRound(humanChoice, computerChoice);
+            switch (winner){
+                case 'tie':
+                    break;
+                case 'human':
+                    humanScore++;
+                    break;
+                case 'computer':
+                    computerScore++;
+                    break;
+            }
+            console.log(`Rounds Remaining: ${5 - roundsPlayed} \n Computer: ${computerScore} You: ${humanScore}`)
+            if (roundsPlayed == 5) {
+                (humanScore > computerScore)?
+                console.log(`You won ${humanScore} to ${computerScore}!`) : 
+                console.log(`You lose ${humanScore} to ${computerScore}.`);
+            }
+        }
+    })
+});
