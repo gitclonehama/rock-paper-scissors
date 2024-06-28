@@ -47,6 +47,31 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
+
+function displayScore(humanScore, computerScore){
+  console.log(`Computer: ${computerScore} You: ${humanScore}`);
+  document.getElementById('computer-score').innerText = computerScore;
+  document.getElementById('human-score').innerText = humanScore;
+}
+
+function displayChoice(humanChoice, computerChoice){
+  document.getElementById('human-choice').innerText = humanChoice;
+  document.getElementById('computer-choice').innerText = computerChoice;
+}
+
+function displayGame(winner, humanChoice, computerChoice, humanScore, computerScore) {
+  displayChoice(humanChoice, computerChoice);
+  displayScore(humanScore, computerScore);
+    if (winner === 'tie'){
+        document.getElementById('round-result').innerText = "It's a tie!";
+    }else if (winner === 'human'){
+        document.getElementById('round-result').innerText = "You win!";
+    }else{
+        document.getElementById('round-result').innerText = "You lose!";
+    }
+}
+
+
 const choiceButtons = document.querySelectorAll(".btn");
 let roundsPlayed = 0;
 let humanScore = 0;
