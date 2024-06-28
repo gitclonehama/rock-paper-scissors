@@ -48,20 +48,20 @@ function playRound(humanChoice, computerChoice) {
 }
 
 
-function displayScore(humanScore, computerScore){
+function updateScore(humanScore, computerScore){
   console.log(`Computer: ${computerScore} You: ${humanScore}`);
   document.getElementById('computer-score').innerText = computerScore;
   document.getElementById('human-score').innerText = humanScore;
 }
 
-function displayChoice(humanChoice, computerChoice){
+function updateChoice(humanChoice, computerChoice){
   document.getElementById('human-choice').innerText = humanChoice;
   document.getElementById('computer-choice').innerText = computerChoice;
 }
 
 function displayGame(winner, humanChoice, computerChoice, humanScore, computerScore) {
-  displayChoice(humanChoice, computerChoice);
-  displayScore(humanScore, computerScore);
+  updateChoice(humanChoice, computerChoice);
+  updateScore(humanScore, computerScore);
     if (winner === 'tie'){
         document.getElementById('round-result').innerText = "It's a tie!";
     }else if (winner === 'human'){
@@ -76,7 +76,6 @@ const choiceButtons = document.querySelectorAll(".btn");
 let roundsPlayed = 0;
 let humanScore = 0;
 let computerScore = 0;
-
 choiceButtons.forEach(button => {
     button.addEventListener("click", function() {
         if (roundsPlayed < 5) {
@@ -100,6 +99,7 @@ choiceButtons.forEach(button => {
                 console.log(`You won ${humanScore} to ${computerScore}!`) : 
                 console.log(`You lose ${humanScore} to ${computerScore}.`);
             }
+            displayGame(winner, humanChoice, computerChoice, humanScore, computerScore);
         }
     })
 });
