@@ -7,59 +7,39 @@ function getComputerChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-  if (humanChoice === computerChoice){
-    return 'tie';
-  }else { // human != computer choice
-      let winner = '';
-      switch(humanChoice){
-          case 'rock':
-              if (computerChoice === 'scissors'){
-                  winner = 'human';
-              }else{  // computer chose 'paper'
-                  winner = 'computer';
-              }
-              break;
-          case 'paper':
-              if (computerChoice === 'rock'){
-                  winner = 'human';
-              }else{  // computer chose 'scissors'
-                  winner = 'computer';
-              }
-              break;
-          case 'scissors':
-              if (computerChoice === 'paper'){
-                  winner = 'human';
-              }else{  // computer chose 'rock'
-                  winner = 'computer';
-              }
-              break;
-      }
-      return winner;
-  }
+    if (humanChoice === computerChoice) return 'tie';
+    switch(humanChoice){
+        case 'rock':
+            return (computerChoice === 'scissors') ? 'human' : 'computer';
+        case 'paper':
+            return (computerChoice === 'rock') ? 'human' : 'computer';
+        case 'scissors':
+            return (computerChoice === 'paper') ? 'human' : 'computer';
+    }
 }
 
-
-function updateScore(humanScore, computerScore){
-  console.log(`Computer: ${computerScore} You: ${humanScore}`);
+function displayScore(humanScore, computerScore){
   document.getElementById('computer-score').innerText = computerScore;
   document.getElementById('human-score').innerText = humanScore;
 }
 
-function updateChoice(humanChoice, computerChoice){
+function displayChoice(humanChoice, computerChoice){
   document.getElementById('human-choice').innerText = humanChoice;
   document.getElementById('computer-choice').innerText = computerChoice;
 }
 
-// Don't forget to reset display after calling this function
-function updateResult(winner) {
-    if (winner === 'tie'){
-        document.getElementById('round-result').innerText = "It's a tie!";
-    }else if (winner === 'human'){
-        document.getElementById('round-result').innerText = "You win!";
-    }else if (winner === 'computer'){
-        document.getElementById('round-result').innerText = "You lose!";
-    }else{
-        document.getElementById('round-result').innerText = "";
+function displayResult(winner) {
+    const result = document.getElementById('round-result');
+    switch (winner) {
+        case 'human':
+            result.innerText = 'You win!';
+            break;
+        case 'computer':
+            result.innerText = 'You lose!';
+            break;
+        case 'tie':
+            result.innerText = 'Tie!';
+            break;
     }
 }
 
@@ -68,6 +48,20 @@ function displayGame(winner, humanChoice, computerChoice, humanScore, computerSc
     updateChoice(humanChoice, computerChoice);
     updateResult(winner);
 }
+
+function resetGame() {
+    roundsPlayed = 0;
+    humanScore = 0;
+    computerScore = 0;
+    displayScore(humanScore, computerScore);
+    displayChoice('?', '?');
+    displayResult('');
+}
+
+// Reset button event listener
+document.getElementById('reset').addEventListener("click", function() {
+    resetGame();
+});
 
 
 const choiceButtons = document.querySelectorAll(".btn");
@@ -92,29 +86,15 @@ choiceButtons.forEach(button => {
                     break;
             }
             // displayGame(winner, humanChoice, computerChoice, humanScore, computerScore);
-            updateScore(humanScore, computerScore);
-            updateChoice(humanChoice, computerChoice);
-            updateResult(winner);
+            displayScore(humanScore, computerScore);
+            displayChoice(humanChoice, computerChoice);
+            displayResult(winner);
             if (humanScore === 10 || computerScore === 10) {
                 (humanScore > computerScore)?
-                alert(`You won ${humanScore} to ${computerScore}!`) :
-                alert(`You lose ${humanScore} to ${computerScore}.`);
+                document.querySelector("#round-result").innerText = (`You won ${humanScore} to ${computerScore}!`) :
+                document.querySelector("#round-result").innerText =(`You lose ${humanScore} to ${computerScore}.`);
                 resetGame();
             }
         }
     })
-});
-
-function resetGame() {
-    roundsPlayed = 0;
-    humanScore = 0;
-    computerScore = 0;
-    updateScore(humanScore, computerScore);
-    updateChoice('?', '?');
-    updateResult('');
-}
-
-// Reset Button
-document.getElementById('reset').addEventListener("click", function() {
-    resetGame();
 });
