@@ -99,17 +99,22 @@ choiceButtons.forEach(button => {
                 (humanScore > computerScore)?
                 alert(`You won ${humanScore} to ${computerScore}!`) :
                 alert(`You lose ${humanScore} to ${computerScore}.`);
+                resetGame();
             }
         }
     })
 });
 
-// Reset Button
-document.getElementById('reset').addEventListener("click", function() {
+function resetGame() {
     roundsPlayed = 0;
     humanScore = 0;
     computerScore = 0;
     updateScore(humanScore, computerScore);
     updateChoice('?', '?');
     updateResult('');
+}
+
+// Reset Button
+document.getElementById('reset').addEventListener("click", function() {
+    resetGame();
 });
