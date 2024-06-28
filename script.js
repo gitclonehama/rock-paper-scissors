@@ -104,6 +104,7 @@ choiceButtons.forEach(button => {
     })
 });
 
+// Reset Button
 document.getElementById('reset').addEventListener("click", function() {
     roundsPlayed = 0;
     humanScore = 0;
