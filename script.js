@@ -55,7 +55,7 @@ function resetGame() {
     computerScore = 0;
     displayScore(humanScore, computerScore);
     displayChoice('?', '?');
-    result.innerText = '....................';
+    result.innerText = 'New game!';
 }
 
 // Reset button event listener
@@ -70,7 +70,7 @@ let humanScore = 0;
 let computerScore = 0;
 choiceButtons.forEach(button => {
     button.addEventListener("click", function() {
-        if (roundsPlayed < 50) {
+        if (roundsPlayed < 200) {
             roundsPlayed++;
             const computerChoice = getComputerChoice();
             const humanChoice = this.innerText.toLowerCase();
@@ -92,7 +92,6 @@ choiceButtons.forEach(button => {
                 (humanScore > computerScore)?
                 document.querySelector("#round-result").innerText = (`You won ${humanScore} to ${computerScore}!`) :
                 document.querySelector("#round-result").innerText =(`You lose ${humanScore} to ${computerScore}.`);
-                resetGame();
             }
         }
     })
