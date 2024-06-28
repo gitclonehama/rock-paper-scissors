@@ -98,13 +98,18 @@ choiceButtons.forEach(button => {
                     computerScore++;
                     break;
             }
+            // displayGame(winner, humanChoice, computerChoice, humanScore, computerScore);
+            updateScore(humanScore, computerScore);
+            updateChoice(humanChoice, computerChoice);
+            updateResult(winner);
+            alert(`Computer: ${computerScore} You: ${humanScore}`);
+
             console.log(`Rounds Remaining: ${5 - roundsPlayed} \n Computer: ${computerScore} You: ${humanScore}`)
             if (roundsPlayed == 5) {
                 (humanScore > computerScore)?
                 console.log(`You won ${humanScore} to ${computerScore}!`) : 
                 console.log(`You lose ${humanScore} to ${computerScore}.`);
             }
-            displayGame(winner, humanChoice, computerChoice, humanScore, computerScore);
         }
     })
 });
