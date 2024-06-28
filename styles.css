@@ -19,6 +19,8 @@ h1 {
   font-size: 4rem;
 }
 
+
+/* Button Styles */
 .buttons {
   padding: 2rem;
   display: flex;
@@ -38,30 +40,40 @@ button {
   cursor: pointer;
   transition: all 0.3s;
 }
+#reset {
+  margin-top: 2rem;
+  width: 15rem;
+}
 
 
 /* Display Box Styles */
 .display-box {
-  padding: 2rem;
+  padding: 1rem;
   width: 854px;
   height: 480px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   background-color: gray;
 }
-.score {
+.scores {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.choices {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+}
+.human-choice, .computer-choice {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  font-size: 2rem;
   gap: 1rem;
 }
-.text {
-  padding: 2rem;
+#round-result {
+  padding-top: 4rem;
   font-size: 4rem;
   text-align: center;
-}
-.text .round-result {
-  padding-top: 2rem;
-  font-size: 2rem;
 }
