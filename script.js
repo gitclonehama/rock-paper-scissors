@@ -6,15 +6,6 @@ function getComputerChoice() {
   return choices[randomChoice];
 }
 
-function getHumanChoice() {
-  const choices = ['rock', 'paper', 'scissors'];
-  let humanChoice = prompt('Choose rock, paper, or scissors:').toLowerCase();
-  while (!choices.includes(humanChoice)) {
-      humanChoice = prompt('Invalid choice. Choose rock, paper, or scissors:').toLowerCase();
-  }
-  return humanChoice;
-}
-
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice){
     return 'tie';
@@ -65,8 +56,10 @@ function updateResult(winner) {
         document.getElementById('round-result').innerText = "It's a tie!";
     }else if (winner === 'human'){
         document.getElementById('round-result').innerText = "You win!";
-    }else{
+    }else if (winner === 'computer'){
         document.getElementById('round-result').innerText = "You lose!";
+    }else{
+        document.getElementById('round-result').innerText = "";
     }
 }
 
@@ -83,7 +76,7 @@ let humanScore = 0;
 let computerScore = 0;
 choiceButtons.forEach(button => {
     button.addEventListener("click", function() {
-        if (roundsPlayed < 5) {
+        if (roundsPlayed < 100) {
             roundsPlayed++;
             const computerChoice = getComputerChoice();
             const humanChoice = this.innerText.toLowerCase();
@@ -102,14 +95,20 @@ choiceButtons.forEach(button => {
             updateScore(humanScore, computerScore);
             updateChoice(humanChoice, computerChoice);
             updateResult(winner);
-            alert(`Computer: ${computerScore} You: ${humanScore}`);
-
-            console.log(`Rounds Remaining: ${5 - roundsPlayed} \n Computer: ${computerScore} You: ${humanScore}`)
-            if (roundsPlayed == 5) {
+            if (humanScore === 10 || computerScore === 10) {
                 (humanScore > computerScore)?
-                console.log(`You won ${humanScore} to ${computerScore}!`) : 
-                console.log(`You lose ${humanScore} to ${computerScore}.`);
+                alert(`You won ${humanScore} to ${computerScore}!`) :
+                alert(`You lose ${humanScore} to ${computerScore}.`);
             }
         }
     })
+});
+
+document.getElementById('reset').addEventListener("click", function() {
+    roundsPlayed = 0;
+    humanScore = 0;
+    computerScore = 0;
+    updateScore(humanScore, computerScore);
+    updateChoice('?', '?');
+    updateResult('');
 });
