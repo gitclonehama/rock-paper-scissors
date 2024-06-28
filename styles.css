@@ -61,7 +61,7 @@ button {
   gap: 0.5rem;
 }
 .choices {
-  margin-top: 2rem;
+  margin-top: 4rem;
   display: flex;
   justify-content: space-around;
 }
@@ -69,11 +69,17 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 4px solid black;
+  border-radius: 1rem;
   font-size: 2rem;
+  padding: 1rem;
   gap: 1rem;
 }
+.human-choice{
+  padding: 1rem 4rem;
+}
 #round-result {
-  padding-top: 4rem;
-  font-size: 4rem;
+  padding-top: 2rem;
+  font-size: 8rem;
   text-align: center;
 }
