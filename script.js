@@ -44,9 +44,9 @@ function displayResult(winner) {
 }
 
 function displayGame(winner, humanChoice, computerChoice, humanScore, computerScore){
-    updateScore(humanScore, computerScore);
-    updateChoice(humanChoice, computerChoice);
-    updateResult(winner);
+    displayScore(humanScore, computerScore);
+    displayChoice(humanChoice, computerChoice);
+    displayResult(winner);
 }
 
 function resetGame() {
@@ -70,7 +70,7 @@ let humanScore = 0;
 let computerScore = 0;
 choiceButtons.forEach(button => {
     button.addEventListener("click", function() {
-        if (roundsPlayed < 100) {
+        if (roundsPlayed < 50) {
             roundsPlayed++;
             const computerChoice = getComputerChoice();
             const humanChoice = this.innerText.toLowerCase();
@@ -85,7 +85,6 @@ choiceButtons.forEach(button => {
                     computerScore++;
                     break;
             }
-            // displayGame(winner, humanChoice, computerChoice, humanScore, computerScore);
             displayScore(humanScore, computerScore);
             displayChoice(humanChoice, computerChoice);
             displayResult(winner);
