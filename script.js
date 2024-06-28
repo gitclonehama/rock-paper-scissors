@@ -59,9 +59,8 @@ function updateChoice(humanChoice, computerChoice){
   document.getElementById('computer-choice').innerText = computerChoice;
 }
 
-function displayGame(winner, humanChoice, computerChoice, humanScore, computerScore) {
-  updateChoice(humanChoice, computerChoice);
-  updateScore(humanScore, computerScore);
+// Don't forget to reset display after calling this function
+function updateResult(winner) {
     if (winner === 'tie'){
         document.getElementById('round-result').innerText = "It's a tie!";
     }else if (winner === 'human'){
@@ -69,6 +68,12 @@ function displayGame(winner, humanChoice, computerChoice, humanScore, computerSc
     }else{
         document.getElementById('round-result').innerText = "You lose!";
     }
+}
+
+function displayGame(winner, humanChoice, computerChoice, humanScore, computerScore){
+    updateScore(humanScore, computerScore);
+    updateChoice(humanChoice, computerChoice);
+    updateResult(winner);
 }
 
 
