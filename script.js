@@ -84,6 +84,7 @@ choiceButtons.forEach(button => {
                 case 'computer':
                     computerScore++;
                     break;
+                    
             }
             displayScore(humanScore, computerScore);
             displayChoice(humanChoice, computerChoice);
